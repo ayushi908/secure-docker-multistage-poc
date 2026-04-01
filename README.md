@@ -1,6 +1,6 @@
- # Secure Docker Implementation: Multi-Stage Build and Non-Root Execution
+ ## Secure Docker Implementation: Multi-Stage Build and Non-Root Execution
 
- # 1. Introduction
+ ## 1. Introduction
 
 This project demonstrates fundamental container security and optimization practices using Docker. The focus is on two critical concepts:
 
