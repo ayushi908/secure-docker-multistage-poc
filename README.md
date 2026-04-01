@@ -1,6 +1,6 @@
  ## Secure Docker Implementation: Multi-Stage Build and Non-Root Execution
 
- ## 1. Introduction
+  1. Introduction
 
 This project demonstrates fundamental container security and optimization practices using Docker. The focus is on two critical concepts:
 
@@ -11,7 +11,7 @@ The implementation uses a lightweight Python-based HTTP server to expose system-
 
 ---
 
-## 2. Objectives
+ 2. Objectives
 
 The primary objectives of this proof of concept are:
 
@@ -22,7 +22,7 @@ The primary objectives of this proof of concept are:
 
 ---
 
-## 3. Application Design
+ 3. Application Design
 
 The application is a simple HTTP server implemented using Python’s standard library. It avoids external dependencies to keep the image lightweight and focused on container behavior rather than application complexity.
 
@@ -39,9 +39,9 @@ The application is a simple HTTP server implemented using Python’s standard li
 
 ---
 
-## 4. Docker Architecture
+ 4. Docker Architecture
 
-### 4.1 Multi-Stage Build
+ 4.1 Multi-Stage Build
 
 The Dockerfile uses a multi-stage build approach to separate concerns between build-time and runtime environments.
 
@@ -51,7 +51,7 @@ The Dockerfile uses a multi-stage build approach to separate concerns between bu
 * Improves security by limiting installed tools and dependencies
 * Ensures cleaner and more maintainable container images
 
-### 4.2 Non-Root User Execution
+ 4.2 Non-Root User Execution
 
 A dedicated non-root user is created inside the container, and the application is executed under this user.
 
@@ -63,16 +63,16 @@ A dedicated non-root user is created inside the container, and the application i
 
 ---
 
-## 5. Dockerfile Explanation
+ 5. Dockerfile Explanation
 
 The Dockerfile is divided into two logical stages:
 
-### Stage 1: Builder
+ Stage 1: Builder
 
 * Prepares the application environment
 * Copies source code into the container
 
-### Stage 2: Runtime
+ Stage 2: Runtime
 
 * Creates a minimal runtime environment
 * Adds a non-root user (`appuser`)
@@ -83,7 +83,7 @@ This separation ensures that only essential components are present in the final 
 
 ---
 
-## 6. Execution Workflow
+ 6. Execution Workflow
 
 ### Build Image
 
@@ -105,7 +105,7 @@ Access the following endpoints via browser:
 * http://localhost:5000/health
 * http://localhost:5000/env
 
-### Verify Non-Root Execution
+ Verify Non-Root Execution
 
 ```
 docker exec -it <container_id> id
@@ -115,7 +115,7 @@ Expected output should indicate a non-root user (e.g., UID 1000).
 
 ---
 
-## 7. Security Considerations
+ 7. Security Considerations
 
 This implementation follows key container security principles:
 
@@ -126,7 +126,7 @@ This implementation follows key container security principles:
 
 ---
 
-## 8. Conclusion
+ 8. Conclusion
 
 This project provides a foundational understanding of secure container image creation and execution. By combining multi-stage builds with non-root user enforcement, it demonstrates practical techniques for building safer and more efficient containerized applications.
 
