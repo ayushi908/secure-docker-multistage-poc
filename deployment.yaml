@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secure-app
+  labels:
+    app: secure-app
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: secure-app
+
+  template:
+    metadata:
+      labels:
+        app: secure-app
+
+    spec:
+      containers:
+        - name: secure-container
+
+          # IMPORTANT: use local image
+          image: secure-app:latest
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 5000
+
+          # Security (matches your Dockerfile user)
+          securityContext:
+            runAsUser: 1000
+            runAsNonRoot: true
+
+          # Liveness Probe
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+          # Readiness Probe
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 10
